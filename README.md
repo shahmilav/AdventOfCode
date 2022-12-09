@@ -32,4 +32,6 @@ This repository contains my solutions for [Advent of Code](https://adventofcode.
             
  ```
 
-Inside `src` there are packages, organized by year. Inside each year are the completed problems for that year. They read from the corresponding input file in `inputs`
+Inside `src` there are packages, organized by year. Inside each year are the completed problems for that year. They read from the corresponding input file in `inputs`.
+
+Inside `helpers` are classes to help with common and day to day code, such as reading files.
