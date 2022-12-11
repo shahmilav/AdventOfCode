@@ -1,6 +1,7 @@
 package year2022;
 
 import helpers.FileManager;
+import helpers.Stopwatch;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -8,12 +9,18 @@ import java.util.Scanner;
 public class Day08 {
     public static void main(String[] args) {
         FileManager manager = new FileManager(2022, 8);
+        Stopwatch s = new Stopwatch();
 
-        Scanner myReader = manager.generateScanner();
-        System.out.println(partOne(myReader));
+        s.start();
+        int partOne = partOne(manager.generateScanner());
+        s.stop();
+        System.out.println("Part 1: " + partOne + " (" + s.getElapsedTime() + " ms)");
+        s.reset();
 
-        myReader = manager.generateScanner();
-        System.out.println(partTwo(myReader));
+        s.start();
+        int partTwo = partTwo(manager.generateScanner());
+        s.stop();
+        System.out.println("Part 2: " + partTwo + " (" + s.getElapsedTime() + " ms)");
     }
 
     private static int partOne(Scanner myReader) {
@@ -28,7 +35,6 @@ public class Day08 {
         }
 
         for (int i = 0; i < grid.length; i++) {
-            boolean isVisible = false;
 
             for (int j = 0; j < grid.length; j++) {
 

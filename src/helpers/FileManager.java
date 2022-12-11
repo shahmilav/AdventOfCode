@@ -6,24 +6,40 @@ import java.util.Scanner;
 
 public class FileManager {
 
+    /** The file to read. */
     private File file;
 
     public FileManager(int year, int day) {
+        this.file = getFile(year, day);
+    }
 
-        String path;
+    public FileManager() {}
+
+    /**
+     * Finds the input file using the day (1-25) and the year.
+     *
+     * @param year the year of the problem
+     * @param day the problem day (1-25)
+     * @return the input file
+     */
+    private File getFile(int year, int day) {
+        String filePath;
 
         String d = Integer.toString(day);
         if (d.length() == 1) {
             d = "0" + d;
         }
 
-        path = "src/year" + year + "/inputs/day" + d + ".in";
+        filePath = "src/year" + year + "/inputs/day" + d + ".in";
 
-        this.file = new File(path);
+        return new File(filePath);
     }
 
-    public FileManager() {}
-
+    /**
+     * Generate a Scanner object to read the file.
+     *
+     * @return the scanner.
+     */
     public Scanner generateScanner() {
         Scanner myReader;
         try {
@@ -34,7 +50,4 @@ public class FileManager {
         return myReader;
     }
 
-    public void setFile(File file) {
-        this.file = file;
-    }
 }

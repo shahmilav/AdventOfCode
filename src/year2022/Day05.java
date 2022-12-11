@@ -1,71 +1,40 @@
 package year2022;
 
 import helpers.FileManager;
+import helpers.Stopwatch;
 
 import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 public class Day05 {
     public static void main(String[] args) throws FileNotFoundException {
         FileManager manager = new FileManager(2022, 5);
+        Stopwatch s = new Stopwatch();
 
-        Scanner myReader = manager.generateScanner();
-        System.out.println(partOne(myReader));
+        s.start();
+        String partOne = partOne(manager.generateScanner());
+        s.stop();
+        System.out.println("Part 1: " + partOne + " (" + s.getElapsedTime() + " ms)");
+        s.reset();
 
-        myReader = manager.generateScanner();
-        System.out.println(partTwo(myReader));
+        s.start();
+        String partTwo = partTwo(manager.generateScanner());
+        s.stop();
+        System.out.println("Part 2: " + partTwo + " (" + s.getElapsedTime() + " ms)");
     }
 
     private static String partOne(Scanner myReader) {
 
-        // TODO(never) read stacks from file instead of hardcoding.
-
-        Stack<String> stack1 = new Stack<>();
-        for (String s : Arrays.asList("T", "P", "Z", "C", "S", "L", "Q", "N")) {
-            stack1.push(s);
-        }
-
-        Stack<String> stack2 = new Stack<>();
-        for (String s : Arrays.asList("L", "P", "T", "V", "H", "C", "G")) {
-            stack2.push(s);
-        }
-
-        Stack<String> stack3 = new Stack<>();
-        for (String s : Arrays.asList("D", "C", "Z", "F")) {
-            stack3.push(s);
-        }
-
-        Stack<String> stack4 = new Stack<>();
-        for (String s : Arrays.asList("G", "W", "T", "D", "L", "M", "V", "C")) {
-            stack4.push(s);
-        }
-
-        Stack<String> stack5 = new Stack<>();
-        for (String s : Arrays.asList("P", "W", "C")) {
-            stack5.push(s);
-        }
-
-        Stack<String> stack6 = new Stack<>();
-        for (String s : Arrays.asList("P", "F", "J", "D", "C", "T", "S", "Z")) {
-            stack6.push(s);
-        }
-
-        Stack<String> stack7 = new Stack<>();
-        for (String s : Arrays.asList("V", "W", "G", "B", "D")) {
-            stack7.push(s);
-        }
-
-        Stack<String> stack8 = new Stack<>();
-        for (String s : Arrays.asList("N", "J", "S", "Q", "H", "W")) {
-            stack8.push(s);
-        }
-
-        Stack<String> stack9 = new Stack<>();
-        for (String s : Arrays.asList("R", "C", "Q", "F", "S", "L", "V")) {
-            stack9.push(s);
-        }
+        List<Stack<String>> stacks = initializeStacks();
+        Stack<String> stack1 = stacks.get(0);
+        Stack<String> stack2 = stacks.get(1);
+        Stack<String> stack3 = stacks.get(2);
+        Stack<String> stack4 = stacks.get(3);
+        Stack<String> stack5 = stacks.get(4);
+        Stack<String> stack6 = stacks.get(5);
+        Stack<String> stack7 = stacks.get(6);
+        Stack<String> stack8 = stacks.get(7);
+        Stack<String> stack9 = stacks.get(8);
 
         while (myReader.hasNextLine()) {
             String s = myReader.nextLine();
@@ -193,50 +162,17 @@ public class Day05 {
     }
 
     private static String partTwo(Scanner myReader) {
-        Stack<String> stack1 = new Stack<>();
-        for (String s : Arrays.asList("T", "P", "Z", "C", "S", "L", "Q", "N")) {
-            stack1.push(s);
-        }
 
-        Stack<String> stack2 = new Stack<>();
-        for (String s : Arrays.asList("L", "P", "T", "V", "H", "C", "G")) {
-            stack2.push(s);
-        }
-
-        Stack<String> stack3 = new Stack<>();
-        for (String s : Arrays.asList("D", "C", "Z", "F")) {
-            stack3.push(s);
-        }
-
-        Stack<String> stack4 = new Stack<>();
-        for (String s : Arrays.asList("G", "W", "T", "D", "L", "M", "V", "C")) {
-            stack4.push(s);
-        }
-
-        Stack<String> stack5 = new Stack<>();
-        for (String s : Arrays.asList("P", "W", "C")) {
-            stack5.push(s);
-        }
-
-        Stack<String> stack6 = new Stack<>();
-        for (String s : Arrays.asList("P", "F", "J", "D", "C", "T", "S", "Z")) {
-            stack6.push(s);
-        }
-
-        Stack<String> stack7 = new Stack<>();
-        for (String s : Arrays.asList("V", "W", "G", "B", "D")) {
-            stack7.push(s);
-        }
-
-        Stack<String> stack8 = new Stack<>();
-        for (String s : Arrays.asList("N", "J", "S", "Q", "H", "W")) {
-            stack8.push(s);
-        }
-
-        Stack<String> stack9 = new Stack<>();
-        for (String s : Arrays.asList("R", "C", "Q", "F", "S", "L", "V")) {
-            stack9.push(s);
-        }
+        List<Stack<String>> stacks = initializeStacks();
+        Stack<String> stack1 = stacks.get(0);
+        Stack<String> stack2 = stacks.get(1);
+        Stack<String> stack3 = stacks.get(2);
+        Stack<String> stack4 = stacks.get(3);
+        Stack<String> stack5 = stacks.get(4);
+        Stack<String> stack6 = stacks.get(5);
+        Stack<String> stack7 = stacks.get(6);
+        Stack<String> stack8 = stacks.get(7);
+        Stack<String> stack9 = stacks.get(8);
 
         while (myReader.hasNextLine()) {
             String s = myReader.nextLine();
@@ -361,5 +297,66 @@ public class Day05 {
                 + stack7.peek()
                 + stack8.peek()
                 + stack9.peek();
+    }
+
+    private static List<Stack<String>> initializeStacks() {
+        Stack<String> stack1 = new Stack<>();
+        for (String s : Arrays.asList("T", "P", "Z", "C", "S", "L", "Q", "N")) {
+            stack1.push(s);
+        }
+
+        Stack<String> stack2 = new Stack<>();
+        for (String s : Arrays.asList("L", "P", "T", "V", "H", "C", "G")) {
+            stack2.push(s);
+        }
+
+        Stack<String> stack3 = new Stack<>();
+        for (String s : Arrays.asList("D", "C", "Z", "F")) {
+            stack3.push(s);
+        }
+
+        Stack<String> stack4 = new Stack<>();
+        for (String s : Arrays.asList("G", "W", "T", "D", "L", "M", "V", "C")) {
+            stack4.push(s);
+        }
+
+        Stack<String> stack5 = new Stack<>();
+        for (String s : Arrays.asList("P", "W", "C")) {
+            stack5.push(s);
+        }
+
+        Stack<String> stack6 = new Stack<>();
+        for (String s : Arrays.asList("P", "F", "J", "D", "C", "T", "S", "Z")) {
+            stack6.push(s);
+        }
+
+        Stack<String> stack7 = new Stack<>();
+        for (String s : Arrays.asList("V", "W", "G", "B", "D")) {
+            stack7.push(s);
+        }
+
+        Stack<String> stack8 = new Stack<>();
+        for (String s : Arrays.asList("N", "J", "S", "Q", "H", "W")) {
+            stack8.push(s);
+        }
+
+        Stack<String> stack9 = new Stack<>();
+        for (String s : Arrays.asList("R", "C", "Q", "F", "S", "L", "V")) {
+            stack9.push(s);
+        }
+
+        List<Stack<String>> stacks = new ArrayList<>();
+
+        stacks.add(stack1);
+        stacks.add(stack2);
+        stacks.add(stack3);
+        stacks.add(stack4);
+        stacks.add(stack5);
+        stacks.add(stack6);
+        stacks.add(stack7);
+        stacks.add(stack8);
+        stacks.add(stack9);
+
+        return stacks;
     }
 }

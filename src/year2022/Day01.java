@@ -1,44 +1,55 @@
 package year2022;
 
-import helpers.FileManager;
+import helpers.AoCSolver;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Day01 {
+public class Day01 extends AoCSolver {
+
+    public Day01(String year, String day) {
+        super(year, day);
+    }
 
     public static void main(String[] args) throws IOException {
-        FileManager manager = new FileManager(2022, 1);
-
-        Scanner myReader = manager.generateScanner();
-        System.out.println(partOne(myReader));
-
-        myReader = manager.generateScanner();
-        System.out.println(partTwo(myReader));
+        new Day01("2022", "01");
     }
 
-    private static int partOne(Scanner myReader) {
-        int[] cals = readCals(myReader);
-        return cals[249];
-    }
+    private static List<Integer> readCals(List<String> input) {
+        List<Integer> cals = new ArrayList<>();
 
-    private static int partTwo(Scanner myReader) {
-        int[] cals = readCals(myReader);
-        return cals[cals.length - 1] + cals[cals.length - 2] + cals[cals.length - 3];
-    }
+        int index = 0;
 
-    private static int[] readCals(Scanner myReader) {
-        int[] cals = new int[250];
+        for (String s : input) {
 
-        for (int i = 1; i < cals.length; i++) {
-            String s = myReader.nextLine();
-            while (!s.isEmpty()) {
-                cals[i] += Integer.parseInt(s);
-                s = myReader.nextLine();
+            if (s.isBlank()) {
+                index++;
+                continue;
             }
+
+            if (cals.size() == index) {
+                cals.add(0);
+            }
+
+            int cal = Integer.parseInt(s);
+
+            int curr = cals.get(index);
+            cals.set(index, curr + cal);
         }
-        Arrays.sort(cals);
+        cals.sort((a, b) -> (b - a));
         return cals;
+    }
+
+    @Override
+    public void solvePartOne(List<String> input) {
+        List<Integer> cals = readCals(input);
+        lap(cals.get(0));
+    }
+
+    @Override
+    public void solvePartTwo(List<String> input) {
+        List<Integer> cals = readCals(input);
+        lap(cals.get(0) + cals.get(1) + cals.get(2));
     }
 }

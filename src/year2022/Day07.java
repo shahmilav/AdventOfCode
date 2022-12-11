@@ -1,6 +1,7 @@
 package year2022;
 
 import helpers.FileManager;
+import helpers.Stopwatch;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -9,12 +10,18 @@ import java.util.Stack;
 public class Day07 {
     public static void main(String[] args) {
         FileManager manager = new FileManager(2022, 7);
+        Stopwatch s = new Stopwatch();
 
-        Scanner myReader = manager.generateScanner();
-        System.out.println(partOne(myReader));
+        s.start();
+        int partOne = partOne(manager.generateScanner());
+        s.stop();
+        System.out.println("Part 1: " + partOne + " (" + s.getElapsedTime() + " ms)");
+        s.reset();
 
-        myReader = manager.generateScanner();
-        System.out.println(partTwo(myReader));
+        s.start();
+        int partTwo = partTwo(manager.generateScanner());
+        s.stop();
+        System.out.println("Part 2: " + partTwo + " (" + s.getElapsedTime() + " ms)");
     }
 
     private static void goUp(Stack<Integer> stack, Stack<Integer> sizes) {
