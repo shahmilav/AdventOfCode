@@ -1,302 +1,19 @@
 package year2022;
 
-import helpers.FileManager;
-import helpers.Stopwatch;
+import helpers.AoCSolver;
 
-import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Stack;
 
-public class Day05 {
-    public static void main(String[] args) throws FileNotFoundException {
-        FileManager manager = new FileManager(2022, 5);
-        Stopwatch s = new Stopwatch();
-
-        s.start();
-        String partOne = partOne(manager.generateScanner());
-        s.stop();
-        System.out.println("Part 1: " + partOne + " (" + s.getElapsedTime() + " ms)");
-        s.reset();
-
-        s.start();
-        String partTwo = partTwo(manager.generateScanner());
-        s.stop();
-        System.out.println("Part 2: " + partTwo + " (" + s.getElapsedTime() + " ms)");
+public class Day05 extends AoCSolver {
+    public Day05(String year, String day) {
+        super(year, day);
     }
 
-    private static String partOne(Scanner myReader) {
-
-        List<Stack<String>> stacks = initializeStacks();
-        Stack<String> stack1 = stacks.get(0);
-        Stack<String> stack2 = stacks.get(1);
-        Stack<String> stack3 = stacks.get(2);
-        Stack<String> stack4 = stacks.get(3);
-        Stack<String> stack5 = stacks.get(4);
-        Stack<String> stack6 = stacks.get(5);
-        Stack<String> stack7 = stacks.get(6);
-        Stack<String> stack8 = stacks.get(7);
-        Stack<String> stack9 = stacks.get(8);
-
-        while (myReader.hasNextLine()) {
-            String s = myReader.nextLine();
-
-            if (!s.isEmpty() && s.charAt(0) == 'm') {
-
-                for (String s1 : Arrays.asList("move ", "from ", "to ")) {
-                    s = s.replace(s1, "");
-                }
-
-                String[] rules = s.split(" ");
-                int numberToMove = Integer.parseInt(rules[0]);
-                int startStack = Integer.parseInt(rules[1]);
-                int endStack = Integer.parseInt(rules[2]);
-
-                String[] moving = new String[numberToMove];
-
-                switch (startStack) {
-                    case (1) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            moving[i] = (stack1.pop());
-                        }
-                    }
-                    case (2) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            moving[i] = (stack2.pop());
-                        }
-                    }
-                    case (3) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            moving[i] = (stack3.pop());
-                        }
-                    }
-                    case (4) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            moving[i] = (stack4.pop());
-                        }
-                    }
-                    case (5) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            moving[i] = (stack5.pop());
-                        }
-                    }
-                    case (6) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            moving[i] = (stack6.pop());
-                        }
-                    }
-                    case (7) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            moving[i] = (stack7.pop());
-                        }
-                    }
-                    case (8) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            moving[i] = (stack8.pop());
-                        }
-                    }
-                    case (9) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            moving[i] = (stack9.pop());
-                        }
-                    }
-                }
-
-                switch (endStack) {
-                    case (1) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            stack1.push(moving[i]);
-                        }
-                    }
-                    case (2) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            stack2.push(moving[i]);
-                        }
-                    }
-                    case (3) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            stack3.push(moving[i]);
-                        }
-                    }
-                    case (4) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            stack4.push(moving[i]);
-                        }
-                    }
-                    case (5) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            stack5.push(moving[i]);
-                        }
-                    }
-                    case (6) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            stack6.push(moving[i]);
-                        }
-                    }
-                    case (7) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            stack7.push(moving[i]);
-                        }
-                    }
-                    case (8) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            stack8.push(moving[i]);
-                        }
-                    }
-                    case (9) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            stack9.push(moving[i]);
-                        }
-                    }
-                }
-            }
-        }
-
-        return stack1.peek()
-                + stack2.peek()
-                + stack3.peek()
-                + stack4.peek()
-                + stack5.peek()
-                + stack6.peek()
-                + stack7.peek()
-                + stack8.peek()
-                + stack9.peek();
-    }
-
-    private static String partTwo(Scanner myReader) {
-
-        List<Stack<String>> stacks = initializeStacks();
-        Stack<String> stack1 = stacks.get(0);
-        Stack<String> stack2 = stacks.get(1);
-        Stack<String> stack3 = stacks.get(2);
-        Stack<String> stack4 = stacks.get(3);
-        Stack<String> stack5 = stacks.get(4);
-        Stack<String> stack6 = stacks.get(5);
-        Stack<String> stack7 = stacks.get(6);
-        Stack<String> stack8 = stacks.get(7);
-        Stack<String> stack9 = stacks.get(8);
-
-        while (myReader.hasNextLine()) {
-            String s = myReader.nextLine();
-
-            if (!s.isEmpty() && s.charAt(0) == 'm') {
-
-                for (String s1 : Arrays.asList("move ", "from ", "to ")) {
-                    s = s.replace(s1, "");
-                }
-
-                String[] rules = s.split(" ");
-                int numberToMove = Integer.parseInt(rules[0]);
-                int startStack = Integer.parseInt(rules[1]);
-                int endStack = Integer.parseInt(rules[2]);
-
-                String[] moving = new String[numberToMove];
-
-                switch (startStack) {
-                    case (1) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            moving[i] = (stack1.pop());
-                        }
-                    }
-                    case (2) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            moving[i] = (stack2.pop());
-                        }
-                    }
-                    case (3) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            moving[i] = (stack3.pop());
-                        }
-                    }
-                    case (4) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-
-                            moving[i] = (stack4.pop());
-                        }
-                    }
-                    case (5) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            moving[i] = (stack5.pop());
-                        }
-                    }
-                    case (6) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            moving[i] = (stack6.pop());
-                        }
-                    }
-                    case (7) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            moving[i] = (stack7.pop());
-                        }
-                    }
-                    case (8) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            moving[i] = (stack8.pop());
-                        }
-                    }
-                    case (9) -> {
-                        for (int i = 0; i < numberToMove; i++) {
-                            moving[i] = (stack9.pop());
-                        }
-                    }
-                }
-
-                switch (endStack) {
-                    case (1) -> {
-                        for (int i = numberToMove - 1; i >= 0; i--) {
-                            stack1.push(moving[i]);
-                        }
-                    }
-                    case (2) -> {
-                        for (int i = numberToMove - 1; i >= 0; i--) {
-                            stack2.push(moving[i]);
-                        }
-                    }
-                    case (3) -> {
-                        for (int i = numberToMove - 1; i >= 0; i--) {
-                            stack3.push(moving[i]);
-                        }
-                    }
-                    case (4) -> {
-                        for (int i = numberToMove - 1; i >= 0; i--) {
-                            stack4.push(moving[i]);
-                        }
-                    }
-                    case (5) -> {
-                        for (int i = numberToMove - 1; i >= 0; i--) {
-                            stack5.push(moving[i]);
-                        }
-                    }
-                    case (6) -> {
-                        for (int i = numberToMove - 1; i >= 0; i--) {
-                            stack6.push(moving[i]);
-                        }
-                    }
-                    case (7) -> {
-                        for (int i = numberToMove - 1; i >= 0; i--) {
-                            stack7.push(moving[i]);
-                        }
-                    }
-                    case (8) -> {
-                        for (int i = numberToMove - 1; i >= 0; i--) {
-                            stack8.push(moving[i]);
-                        }
-                    }
-                    case (9) -> {
-                        for (int i = numberToMove - 1; i >= 0; i--) {
-                            stack9.push(moving[i]);
-                        }
-                    }
-                }
-            }
-        }
-        return stack1.peek()
-                + stack2.peek()
-                + stack3.peek()
-                + stack4.peek()
-                + stack5.peek()
-                + stack6.peek()
-                + stack7.peek()
-                + stack8.peek()
-                + stack9.peek();
+    public static void main(String[] args) {
+        new Day05("2022", "05");
     }
 
     private static List<Stack<String>> initializeStacks() {
@@ -358,5 +75,282 @@ public class Day05 {
         stacks.add(stack9);
 
         return stacks;
+    }
+
+    @Override
+    public void solvePartOne(List<String> input) {
+        List<Stack<String>> stacks = initializeStacks();
+        Stack<String> stack1 = stacks.get(0);
+        Stack<String> stack2 = stacks.get(1);
+        Stack<String> stack3 = stacks.get(2);
+        Stack<String> stack4 = stacks.get(3);
+        Stack<String> stack5 = stacks.get(4);
+        Stack<String> stack6 = stacks.get(5);
+        Stack<String> stack7 = stacks.get(6);
+        Stack<String> stack8 = stacks.get(7);
+        Stack<String> stack9 = stacks.get(8);
+
+        for (String s : input) {
+
+            if (!s.isEmpty() && s.charAt(0) == 'm') {
+
+                for (String s1 : Arrays.asList("move ", "from ", "to ")) {
+                    s = s.replace(s1, "");
+                }
+
+                String[] rules = s.split(" ");
+                int numberToMove = Integer.parseInt(rules[0]);
+                int startStack = Integer.parseInt(rules[1]);
+                int endStack = Integer.parseInt(rules[2]);
+
+                String[] moving = new String[numberToMove];
+
+                switch (startStack) {
+                    case (1) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            moving[i] = (stack1.pop());
+                        }
+                    }
+                    case (2) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            moving[i] = (stack2.pop());
+                        }
+                    }
+                    case (3) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            moving[i] = (stack3.pop());
+                        }
+                    }
+                    case (4) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            moving[i] = (stack4.pop());
+                        }
+                    }
+                    case (5) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            moving[i] = (stack5.pop());
+                        }
+                    }
+                    case (6) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            moving[i] = (stack6.pop());
+                        }
+                    }
+                    case (7) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            moving[i] = (stack7.pop());
+                        }
+                    }
+                    case (8) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            moving[i] = (stack8.pop());
+                        }
+                    }
+                    case (9) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            moving[i] = (stack9.pop());
+                        }
+                    }
+                }
+
+                switch (endStack) {
+                    case (1) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            stack1.push(moving[i]);
+                        }
+                    }
+                    case (2) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            stack2.push(moving[i]);
+                        }
+                    }
+                    case (3) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            stack3.push(moving[i]);
+                        }
+                    }
+                    case (4) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            stack4.push(moving[i]);
+                        }
+                    }
+                    case (5) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            stack5.push(moving[i]);
+                        }
+                    }
+                    case (6) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            stack6.push(moving[i]);
+                        }
+                    }
+                    case (7) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            stack7.push(moving[i]);
+                        }
+                    }
+                    case (8) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            stack8.push(moving[i]);
+                        }
+                    }
+                    case (9) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            stack9.push(moving[i]);
+                        }
+                    }
+                }
+            }
+        }
+
+        lap(
+                stack1.peek()
+                        + stack2.peek()
+                        + stack3.peek()
+                        + stack4.peek()
+                        + stack5.peek()
+                        + stack6.peek()
+                        + stack7.peek()
+                        + stack8.peek()
+                        + stack9.peek());
+    }
+
+    @Override
+    public void solvePartTwo(List<String> input) {
+
+        List<Stack<String>> stacks = initializeStacks();
+        Stack<String> stack1 = stacks.get(0);
+        Stack<String> stack2 = stacks.get(1);
+        Stack<String> stack3 = stacks.get(2);
+        Stack<String> stack4 = stacks.get(3);
+        Stack<String> stack5 = stacks.get(4);
+        Stack<String> stack6 = stacks.get(5);
+        Stack<String> stack7 = stacks.get(6);
+        Stack<String> stack8 = stacks.get(7);
+        Stack<String> stack9 = stacks.get(8);
+
+        for (String s : input) {
+
+            if (!s.isEmpty() && s.charAt(0) == 'm') {
+
+                for (String s1 : Arrays.asList("move ", "from ", "to ")) {
+                    s = s.replace(s1, "");
+                }
+
+                String[] rules = s.split(" ");
+                int numberToMove = Integer.parseInt(rules[0]);
+                int startStack = Integer.parseInt(rules[1]);
+                int endStack = Integer.parseInt(rules[2]);
+
+                String[] moving = new String[numberToMove];
+
+                switch (startStack) {
+                    case (1) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            moving[i] = (stack1.pop());
+                        }
+                    }
+                    case (2) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            moving[i] = (stack2.pop());
+                        }
+                    }
+                    case (3) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            moving[i] = (stack3.pop());
+                        }
+                    }
+                    case (4) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+
+                            moving[i] = (stack4.pop());
+                        }
+                    }
+                    case (5) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            moving[i] = (stack5.pop());
+                        }
+                    }
+                    case (6) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            moving[i] = (stack6.pop());
+                        }
+                    }
+                    case (7) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            moving[i] = (stack7.pop());
+                        }
+                    }
+                    case (8) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            moving[i] = (stack8.pop());
+                        }
+                    }
+                    case (9) -> {
+                        for (int i = 0; i < numberToMove; i++) {
+                            moving[i] = (stack9.pop());
+                        }
+                    }
+                }
+
+                switch (endStack) {
+                    case (1) -> {
+                        for (int i = numberToMove - 1; i >= 0; i--) {
+                            stack1.push(moving[i]);
+                        }
+                    }
+                    case (2) -> {
+                        for (int i = numberToMove - 1; i >= 0; i--) {
+                            stack2.push(moving[i]);
+                        }
+                    }
+                    case (3) -> {
+                        for (int i = numberToMove - 1; i >= 0; i--) {
+                            stack3.push(moving[i]);
+                        }
+                    }
+                    case (4) -> {
+                        for (int i = numberToMove - 1; i >= 0; i--) {
+                            stack4.push(moving[i]);
+                        }
+                    }
+                    case (5) -> {
+                        for (int i = numberToMove - 1; i >= 0; i--) {
+                            stack5.push(moving[i]);
+                        }
+                    }
+                    case (6) -> {
+                        for (int i = numberToMove - 1; i >= 0; i--) {
+                            stack6.push(moving[i]);
+                        }
+                    }
+                    case (7) -> {
+                        for (int i = numberToMove - 1; i >= 0; i--) {
+                            stack7.push(moving[i]);
+                        }
+                    }
+                    case (8) -> {
+                        for (int i = numberToMove - 1; i >= 0; i--) {
+                            stack8.push(moving[i]);
+                        }
+                    }
+                    case (9) -> {
+                        for (int i = numberToMove - 1; i >= 0; i--) {
+                            stack9.push(moving[i]);
+                        }
+                    }
+                }
+            }
+        }
+        lap(
+                stack1.peek()
+                        + stack2.peek()
+                        + stack3.peek()
+                        + stack4.peek()
+                        + stack5.peek()
+                        + stack6.peek()
+                        + stack7.peek()
+                        + stack8.peek()
+                        + stack9.peek());
     }
 }

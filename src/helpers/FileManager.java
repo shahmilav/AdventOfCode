@@ -7,13 +7,11 @@ import java.util.Scanner;
 public class FileManager {
 
     /** The file to read. */
-    private File file;
+    private final File file;
 
     public FileManager(int year, int day) {
         this.file = getFile(year, day);
     }
-
-    public FileManager() {}
 
     /**
      * Finds the input file using the day (1-25) and the year.
@@ -49,5 +47,4 @@ public class FileManager {
         }
         return myReader;
     }
-
 }

@@ -2,7 +2,6 @@ package year2022;
 
 import helpers.AoCSolver;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,7 @@ public class Day01 extends AoCSolver {
         super(year, day);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         new Day01("2022", "01");
     }
 

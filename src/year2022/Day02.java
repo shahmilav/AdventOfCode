@@ -1,34 +1,24 @@
 package year2022;
 
-import helpers.FileManager;
-import helpers.Stopwatch;
+import helpers.AoCSolver;
 
-import java.util.Scanner;
+import java.util.List;
 
-public class Day02 {
+public class Day02 extends AoCSolver {
 
-    public static void main(String[] args) {
-        FileManager manager = new FileManager(2022, 2);
-        Stopwatch s = new Stopwatch();
-
-        s.start();
-        int partOne = partOne(manager.generateScanner());
-        s.stop();
-        System.out.println("Part 1: " + partOne + " (" + s.getElapsedTime() + " ms)");
-        s.reset();
-
-        s.start();
-        int partTwo = partTwo(manager.generateScanner());
-        s.stop();
-        System.out.println("Part 2: " + partTwo + " (" + s.getElapsedTime() + " ms)");
+    public Day02(String year, String day) {
+        super(year, day);
     }
 
-    private static int partOne(Scanner myReader) {
+    public static void main(String[] args) {
+        new Day02("2022", "02");
+    }
+
+    @Override
+    public void solvePartOne(List<String> input) {
         int points = 0;
 
-        for (int i = 0; i < 2500; i++) {
-
-            String s = myReader.nextLine();
+        for (String s : input) {
 
             switch (s) {
                     // Rock = Rock (1+3)
@@ -52,15 +42,14 @@ public class Day02 {
             }
         }
 
-        return points;
+        lap(points);
     }
 
-    private static int partTwo(Scanner myReader) {
+    @Override
+    public void solvePartTwo(List<String> input) {
         int points = 0;
 
-        for (int i = 0; i < 2500; i++) {
-
-            String s = myReader.nextLine();
+        for (String s : input) {
 
             switch (s.charAt(0)) {
                 case 'A':
@@ -99,6 +88,6 @@ public class Day02 {
             }
         }
 
-        return points;
+        lap(points);
     }
 }

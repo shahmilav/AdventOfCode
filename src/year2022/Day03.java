@@ -1,137 +1,17 @@
 package year2022;
 
-import helpers.FileManager;
-import helpers.Stopwatch;
+import helpers.AoCSolver;
 
 import java.util.Arrays;
-import java.util.Scanner;
+import java.util.List;
 
-public class Day03 {
+public class Day03 extends AoCSolver {
+    public Day03(String year, String day) {
+        super(year, day);
+    }
+
     public static void main(String[] args) {
-        FileManager manager = new FileManager(2022, 3);
-        Stopwatch s = new Stopwatch();
-
-        s.start();
-        int partOne = partOne(manager.generateScanner());
-        s.stop();
-        System.out.println("Part 1: " + partOne + " (" + s.getElapsedTime() + " ms)");
-        s.reset();
-
-        s.start();
-        int partTwo = partTwo(manager.generateScanner());
-        s.stop();
-        System.out.println("Part 2: " + partTwo + " (" + s.getElapsedTime() + " ms)");
-    }
-
-    private static int partOne(Scanner myReader) {
-        int sum = 0;
-        String[] group1;
-        String[] group2;
-
-        while (myReader.hasNextLine()) {
-            String s = myReader.nextLine();
-            int half = s.length() / 2;
-
-            String[] parts = {s.substring(0, half), s.substring(half)};
-
-            group1 = new String[parts[0].length()];
-            for (int i = 0; i < parts[0].length(); i++) {
-                String m = Character.toString(parts[0].charAt(i));
-                group1[i] = m;
-            }
-            group2 = new String[parts[1].length()];
-            for (int i = 0; i < parts[1].length(); i++) {
-                String m = Character.toString(parts[1].charAt(i));
-                group2[i] = m;
-            }
-
-            for (int i = 0; i < group1.length; i++) {
-                charToNumAsString(group1, i);
-                charToNumAsString(group2, i);
-            }
-
-            Arrays.sort(group1);
-            Arrays.sort(group2);
-
-            int temp = 0;
-            for (String value : group1) {
-
-                for (String item : group2) {
-                    if (value.equals(item) && Integer.parseInt(value) != temp) {
-                        sum += Integer.parseInt(value);
-                        temp = Integer.parseInt(value);
-                        break;
-                    }
-                }
-            }
-        }
-
-        return sum;
-    }
-
-    private static int partTwo(Scanner myReader) {
-        int sum = 0;
-        String[] sack1;
-        String[] sack2;
-        String[] sack3;
-
-        for (int i = 0; i < 100; i++) {
-            String s1 = myReader.nextLine();
-            String s2 = myReader.nextLine();
-            String s3 = myReader.nextLine();
-
-            // Create sacks
-            sack1 = new String[s1.length()];
-            for (int j = 0; j < sack1.length; j++) {
-                String m = Character.toString(s1.charAt(j));
-                sack1[j] = m;
-            }
-            sack2 = new String[s2.length()];
-            for (int j = 0; j < sack2.length; j++) {
-                String m = Character.toString(s2.charAt(j));
-                sack2[j] = m;
-            }
-            sack3 = new String[s3.length()];
-            for (int j = 0; j < sack3.length; j++) {
-                String m = Character.toString(s3.charAt(j));
-                sack3[j] = m;
-            }
-
-            // Convert sacks to numbers
-            for (int j = 0; j < Math.max(Math.max(sack1.length, sack2.length), sack3.length); j++) {
-                if (!(j >= sack1.length)) {
-                    charToNumAsString(sack1, j);
-                }
-
-                if (!(j >= sack2.length)) {
-                    charToNumAsString(sack2, j);
-                }
-
-                if (!(j >= sack3.length)) {
-                    charToNumAsString(sack3, j);
-                }
-            }
-
-            // Sort sacks
-            Arrays.sort(sack1);
-            Arrays.sort(sack2);
-            Arrays.sort(sack3);
-
-            // Search sacks
-            loop:
-            for (String s : sack1) {
-                for (String item : sack2) {
-                    for (String value : sack3) {
-                        if (s.equals(item) && value.equals(item)) {
-                            sum += Integer.parseInt(item);
-                            break loop;
-                        }
-                    }
-                }
-            }
-        }
-
-        return sum;
+        new Day03("2022", "03");
     }
 
     private static void charToNumAsString(String[] group2, int i) {
@@ -189,5 +69,117 @@ public class Day03 {
             case ('Y') -> group2[i] = "51";
             case ('Z') -> group2[i] = "52";
         }
+    }
+
+    @Override
+    public void solvePartOne(List<String> input) {
+        int sum = 0;
+        String[] group1;
+        String[] group2;
+
+        for (String s : input) {
+            int half = s.length() / 2;
+
+            String[] parts = {s.substring(0, half), s.substring(half)};
+
+            group1 = new String[parts[0].length()];
+            for (int i = 0; i < parts[0].length(); i++) {
+                String m = Character.toString(parts[0].charAt(i));
+                group1[i] = m;
+            }
+            group2 = new String[parts[1].length()];
+            for (int i = 0; i < parts[1].length(); i++) {
+                String m = Character.toString(parts[1].charAt(i));
+                group2[i] = m;
+            }
+
+            for (int i = 0; i < group1.length; i++) {
+                charToNumAsString(group1, i);
+                charToNumAsString(group2, i);
+            }
+
+            Arrays.sort(group1);
+            Arrays.sort(group2);
+
+            int temp = 0;
+            for (String value : group1) {
+
+                for (String item : group2) {
+                    if (value.equals(item) && Integer.parseInt(value) != temp) {
+                        sum += Integer.parseInt(value);
+                        temp = Integer.parseInt(value);
+                        break;
+                    }
+                }
+            }
+        }
+
+        lap(sum);
+    }
+
+    @Override
+    public void solvePartTwo(List<String> input) {
+        int sum = 0;
+        String[] sack1;
+        String[] sack2;
+        String[] sack3;
+
+        for (int i = 0; i < input.size(); i += 3) {
+            String s1 = input.get(i);
+            String s2 = input.get(i + 1);
+            String s3 = input.get(i + 2);
+
+            // Create sacks
+            sack1 = new String[s1.length()];
+            for (int j = 0; j < sack1.length; j++) {
+                String m = Character.toString(s1.charAt(j));
+                sack1[j] = m;
+            }
+            sack2 = new String[s2.length()];
+            for (int j = 0; j < sack2.length; j++) {
+                String m = Character.toString(s2.charAt(j));
+                sack2[j] = m;
+            }
+            sack3 = new String[s3.length()];
+            for (int j = 0; j < sack3.length; j++) {
+                String m = Character.toString(s3.charAt(j));
+                sack3[j] = m;
+            }
+
+            // Convert sacks to numbers
+            for (int j = 0; j < Math.max(Math.max(sack1.length, sack2.length), sack3.length); j++) {
+                if (!(j >= sack1.length)) {
+                    charToNumAsString(sack1, j);
+                }
+
+                if (!(j >= sack2.length)) {
+                    charToNumAsString(sack2, j);
+                }
+
+                if (!(j >= sack3.length)) {
+                    charToNumAsString(sack3, j);
+                }
+            }
+
+            // Sort sacks
+            Arrays.sort(sack1);
+            Arrays.sort(sack2);
+            Arrays.sort(sack3);
+
+            // Search sacks
+            loop:
+            for (String s : sack1) {
+                for (String item : sack2) {
+                    for (String value : sack3) {
+                        if (s.equals(item) && value.equals(item)) {
+                            sum += Integer.parseInt(item);
+                            break loop;
+                        }
+                    }
+                }
+            }
+        }
+
+        lap(sum);
     }
 }

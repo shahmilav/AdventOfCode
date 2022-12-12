@@ -3,11 +3,10 @@ package year2019;
 import helpers.FileManager;
 import helpers.Stopwatch;
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Day01 {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         FileManager manager = new FileManager(2019, 1);
         Stopwatch s = new Stopwatch();
 

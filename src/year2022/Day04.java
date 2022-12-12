@@ -1,31 +1,23 @@
 package year2022;
 
-import helpers.FileManager;
-import helpers.Stopwatch;
+import helpers.AoCSolver;
 
-import java.util.Scanner;
+import java.util.List;
 
-public class Day04 {
-    public static void main(String[] args) {
-        FileManager manager = new FileManager(2022, 4);
-        Stopwatch s = new Stopwatch();
-
-        s.start();
-        int partOne = partOne(manager.generateScanner());
-        s.stop();
-        System.out.println("Part 1: " + partOne + " (" + s.getElapsedTime() + " ms)");
-        s.reset();
-
-        s.start();
-        int partTwo = partTwo(manager.generateScanner());
-        s.stop();
-        System.out.println("Part 2: " + partTwo + " (" + s.getElapsedTime() + " ms)");
+public class Day04 extends AoCSolver {
+    public Day04(String year, String day) {
+        super(year, day);
     }
 
-    private static int partOne(Scanner myReader) {
+    public static void main(String[] args) {
+        new Day04("2022", "04");
+    }
+
+    @Override
+    public void solvePartOne(List<String> input) {
         int count = 0;
-        while (myReader.hasNextLine()) {
-            String[] split = myReader.nextLine().split(",");
+        for (String s : input) {
+            String[] split = s.split(",");
 
             String first = split[0];
             String second = split[1];
@@ -47,13 +39,14 @@ public class Day04 {
             }
         }
 
-        return count;
+        lap(count);
     }
 
-    private static int partTwo(Scanner myReader) {
+    @Override
+    public void solvePartTwo(List<String> input) {
         int count = 1000;
-        while (myReader.hasNextLine()) {
-            String[] pairs = myReader.nextLine().split(",");
+        for (String s : input) {
+            String[] pairs = s.split(",");
 
             String first = pairs[0];
             String second = pairs[1];
@@ -66,6 +59,6 @@ public class Day04 {
                 count--;
         }
 
-        return count;
+        lap(count);
     }
 }
