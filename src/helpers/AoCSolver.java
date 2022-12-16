@@ -45,6 +45,7 @@ public abstract class AoCSolver {
 
     /**
      * Solves the puzzle
+     *
      * @param input the file input.
      */
     private void solve(List<String> input) {
@@ -95,7 +96,8 @@ public abstract class AoCSolver {
             System.out.println("-- Day " + day + " -- \n");
         }
         long timeSpent = (System.nanoTime() - timerStart) / 1000;
-        System.out.println("Part " + part + ": " + answer + ", Duration: " + timeToString(timeSpent));
+        System.out.println(
+                "Part " + part + ": " + answer + ", Duration: " + timeToString(timeSpent));
         timerStart = System.nanoTime();
         part++;
     }

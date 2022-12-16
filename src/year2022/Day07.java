@@ -1,27 +1,18 @@
 package year2022;
 
-import helpers.FileManager;
-import helpers.Stopwatch;
+import helpers.AoCSolver;
 
 import java.util.Arrays;
-import java.util.Scanner;
+import java.util.List;
 import java.util.Stack;
 
-public class Day07 {
+public class Day07 extends AoCSolver {
+    public Day07(String year, String day) {
+        super(year, day);
+    }
+
     public static void main(String[] args) {
-        FileManager manager = new FileManager(2022, 7);
-        Stopwatch s = new Stopwatch();
-
-        s.start();
-        int partOne = partOne(manager.generateScanner());
-        s.stop();
-        System.out.println("Part 1: " + partOne + " (" + s.getElapsedTime() + " ms)");
-        s.reset();
-
-        s.start();
-        int partTwo = partTwo(manager.generateScanner());
-        s.stop();
-        System.out.println("Part 2: " + partTwo + " (" + s.getElapsedTime() + " ms)");
+        new Day07("2022", "07");
     }
 
     private static void goUp(Stack<Integer> stack, Stack<Integer> sizes) {
@@ -34,12 +25,12 @@ public class Day07 {
         }
     }
 
-    private static int partOne(Scanner myReader) {
+    @Override
+    public void solvePartOne(List<String> input) {
         Stack<Integer> stack = new Stack<>();
         Stack<Integer> sizes = new Stack<>();
 
-        while (myReader.hasNextLine()) {
-            String s = myReader.nextLine();
+        for (String s : input) {
             String[] arr = s.split(" ");
 
             if (arr[0].equals("$")) {
@@ -71,15 +62,15 @@ public class Day07 {
             }
         }
 
-        return sum;
+        lap(sum);
     }
 
-    private static int partTwo(Scanner myReader) {
+    @Override
+    public void solvePartTwo(List<String> input) {
         Stack<Integer> stack = new Stack<>();
         Stack<Integer> sizes = new Stack<>();
 
-        while (myReader.hasNextLine()) {
-            String s = myReader.nextLine();
+        for (String s : input) {
             String[] arr = s.split(" ");
 
             if (arr[0].equals("$")) {
@@ -108,10 +99,8 @@ public class Day07 {
 
             if (Integer.parseInt(a[i].toString())
                     >= (Integer.parseInt(a[a.length - 1].toString()) - 40000000)) {
-                return Integer.parseInt(a[i].toString());
+                lap(Integer.parseInt(a[i].toString()));
             }
         }
-
-        return 0;
     }
 }

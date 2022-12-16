@@ -19,7 +19,6 @@ public class Day01 extends AoCSolver {
         List<Integer> cals = new ArrayList<>();
 
         int index = 0;
-
         for (String s : input) {
 
             if (s.isBlank()) {

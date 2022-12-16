@@ -1,31 +1,22 @@
 package year2022;
 
-import helpers.FileManager;
-import helpers.Stopwatch;
+import helpers.AoCSolver;
 
-import java.util.Scanner;
+import java.util.List;
 
-public class Day06 {
-    public static void main(String[] args) {
-        FileManager manager = new FileManager(2022, 6);
-        Stopwatch s = new Stopwatch();
-
-        s.start();
-        int partOne = partOne(manager.generateScanner());
-        s.stop();
-        System.out.println("Part 1: " + partOne + " (" + s.getElapsedTime() + " ms)");
-        s.reset();
-
-        s.start();
-        int partTwo = partTwo(manager.generateScanner());
-        s.stop();
-        System.out.println("Part 2: " + partTwo + " (" + s.getElapsedTime() + " ms)");
+public class Day06 extends AoCSolver {
+    public Day06(String year, String day) {
+        super(year, day);
     }
 
-    private static int partOne(Scanner myReader) {
-        String s = myReader.nextLine();
+    public static void main(String[] args) {
+        new Day06("2022", "06");
+    }
 
-        char[] dataStream = s.toCharArray();
+    @Override
+    public void solvePartOne(List<String> input) {
+
+        char[] dataStream = input.get(0).toCharArray();
 
         for (int i = 3; i < dataStream.length; i++) {
             char first = dataStream[i - 3];
@@ -36,20 +27,19 @@ public class Day06 {
             if (first != second && first != third && first != fourth) {
                 if (second != third && second != fourth) {
                     if (third != fourth) {
-                        return i + 1; // message index (not zero based!)
+                        lap(i + 1); // message index (not zero based!)
                     }
                 }
             }
         }
-        return 0;
     }
 
-    public static int partTwo(Scanner myReader) {
-        String s = myReader.nextLine();
+    @Override
+    public void solvePartTwo(List<String> input) {
 
-        char[] dataStream = s.toCharArray();
+        char[] dataStream = input.get(0).toCharArray();
 
-        for (int i = 13; i < s.length(); i++) {
+        for (int i = 13; i < input.get(0).length(); i++) {
 
             char one = dataStream[i - 13];
             char two = dataStream[i - 12];
@@ -161,7 +151,7 @@ public class Day06 {
                                                         if (twelve != thirteen
                                                                 && twelve != fourteen) {
                                                             if (thirteen != fourteen) {
-                                                                return i + 1;
+                                                                lap(i + 1);
                                                             }
                                                         }
                                                     }
@@ -176,7 +166,5 @@ public class Day06 {
                 }
             }
         }
-
-        return 0;
     }
 }
