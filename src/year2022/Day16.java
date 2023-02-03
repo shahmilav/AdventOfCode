@@ -8,12 +8,12 @@ import java.util.Map;
 
 public class Day16 extends AoCSolver {
 
-    public Day16(String year, String day) {
+    public Day16(int year, String day) {
         super(year, day);
     }
 
     public static void main(String[] args) {
-        new Day16("2022", "16");
+        new Day16(2022, "16");
     }
 
     private Map<String, Valve> input(List<String> input) {
@@ -25,20 +25,14 @@ public class Day16 extends AoCSolver {
     @Override
     public void solvePartOne(List<String> input) {
         Map<String, Valve> valves = input(input);
-
     }
 
     @Override
-    public void solvePartTwo(List<String> input) {
+    public void solvePartTwo(List<String> input) {}
 
-    }
+    public record Valve(String name, long flow, String others) {}
 
-    public record Valve(String name, long flow, String others) {
-    }
+    public record State(Map<String, Long> open, Valve valve, long totalFlow) {}
 
-    public record State(Map<String, Long> open, Valve valve, long totalFlow) {
-    }
-
-    public record State2(Map<String, Long> open, Valve me, Valve elephant, long totalFlow) {
-    }
+    public record State2(Map<String, Long> open, Valve me, Valve elephant, long totalFlow) {}
 }

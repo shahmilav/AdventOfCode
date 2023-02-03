@@ -5,12 +5,12 @@ import helpers.AoCSolver;
 import java.util.List;
 
 public class Day04 extends AoCSolver {
-    public Day04(String year, String day) {
+    public Day04(int year, String day) {
         super(year, day);
     }
 
     public static void main(String[] args) {
-        new Day04("2022", "04");
+        new Day04(2022, "04");
     }
 
     @Override

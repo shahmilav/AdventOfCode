@@ -13,12 +13,12 @@ public class Day12 extends AoCSolver {
     public static int WIDTH;
     public static int HEIGHT;
 
-    public Day12(String year, String day) {
+    public Day12(int year, String day) {
         super(year, day);
     }
 
     public static void main(String[] args) {
-        new Day12("2022", "12");
+        new Day12(2022, "12");
     }
 
     /**

@@ -10,13 +10,14 @@ import java.util.Set;
 
 public class Day09 extends AoCSolver {
 
-    public static void main(String[] args) {
-        new Day09();
+    public Day09(int year, String day) {
+        super(year, day);
     }
 
-    public Day09() {
-        super("2022", "09");
+    public static void main(String[] args) {
+        new Day09(2022, "09");
     }
+
 
     private static int getVisitedPoints(List<String> input, Set<Point> visited, List<Point> snake) {
         visited.add(snake.get(snake.size() - 1));

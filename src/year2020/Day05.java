@@ -8,12 +8,12 @@ import java.util.List;
 
 public class Day05 extends AoCSolver {
 
-    public Day05(String year, String day) {
+    public Day05(int year, String day) {
         super(year, day);
     }
 
     public static void main(String[] args) {
-        new Day05("2020", "05");
+        new Day05(2020, "05");
     }
 
     @Override
@@ -108,6 +108,5 @@ public class Day05 extends AoCSolver {
                 lap(ids.get(i) + 1);
             }
         }
-
     }
 }

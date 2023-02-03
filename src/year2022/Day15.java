@@ -7,12 +7,12 @@ import java.util.List;
 
 public class Day15 extends AoCSolver {
 
-    public Day15(String year, String day) {
+    public Day15(int year, String day) {
         super(year, day);
     }
 
     public static void main(String[] args) {
-        new Day15("2022", "15");
+        new Day15(2022, "15");
     }
 
     public boolean checkPossible(

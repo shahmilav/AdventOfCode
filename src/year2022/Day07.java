@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Stack;
 
 public class Day07 extends AoCSolver {
-    public Day07(String year, String day) {
+    public Day07(int year, String day) {
         super(year, day);
     }
 
     public static void main(String[] args) {
-        new Day07("2022", "07");
+        new Day07(2022, "07");
     }
 
     private static void goUp(Stack<Integer> stack, Stack<Integer> sizes) {

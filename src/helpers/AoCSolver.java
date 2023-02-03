@@ -10,7 +10,7 @@ public abstract class AoCSolver {
     private int part = 1;
     private long timerStart;
 
-    public AoCSolver(String year, String day) {
+    public AoCSolver(int year, String day) {
         this.day = day;
         File file = new File("src/year" + year + "/inputs/day" + day + ".in");
         if (!file.exists()) {
@@ -42,6 +42,7 @@ public abstract class AoCSolver {
         timerStart = System.nanoTime();
         solve(inputLines);
     }
+
 
     /**
      * Solves the puzzle
@@ -96,8 +97,7 @@ public abstract class AoCSolver {
             System.out.println("-- Day " + day + " -- \n");
         }
         long timeSpent = (System.nanoTime() - timerStart) / 1000;
-        System.out.println(
-                "Part " + part + ": " + answer + ", Duration: " + timeToString(timeSpent));
+        System.out.println("Part " + part + ": " + answer + ", Duration: " + timeToString(timeSpent));
         timerStart = System.nanoTime();
         part++;
     }

@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Day10 extends AoCSolver {
-    public Day10(String year, String day) {
+    public Day10(int year, String day) {
         super(year, day);
     }
 
     public static void main(String[] args) {
-        new Day10("2022", "10");
+        new Day10(2022, "10");
     }
 
     private static int signalStrength(int cycle, int x) {

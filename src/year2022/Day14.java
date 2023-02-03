@@ -9,12 +9,12 @@ import java.util.Map;
 
 public class Day14 extends AoCSolver {
 
-    public Day14(String year, String day) {
+    public Day14(int year, String day) {
         super(year, day);
     }
 
     public static void main(String[] args) {
-        new Day14("2022", "14");
+        new Day14(2022, "14");
     }
 
     @Override

@@ -7,12 +7,12 @@ import java.util.List;
 
 public class Day01 extends AoCSolver {
 
-    public Day01(String year, String day) {
+    public Day01(int year, String day) {
         super(year, day);
     }
 
     public static void main(String[] args) {
-        new Day01("2022", "01");
+        new Day01(2022, "01");
     }
 
     private static List<Integer> readCals(List<String> input) {

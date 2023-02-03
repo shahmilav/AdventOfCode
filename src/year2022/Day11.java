@@ -9,12 +9,12 @@ import java.util.Stack;
 
 public class Day11 extends AoCSolver {
 
-    public Day11(String year, String day) {
+    public Day11(int year, String day) {
         super(year, day);
     }
 
     public static void main(String[] args) {
-        new Day11("2022", "11");
+        new Day11(2022, "11");
     }
 
     private static List<Stack<Integer>> initializeStacks() {
@@ -203,3 +203,4 @@ public class Day11 extends AoCSolver {
         System.out.println("\t\t\t\t\t Note: Part two time inaccurate.");
     }
 }
+
