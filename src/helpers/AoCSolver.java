@@ -1,6 +1,7 @@
 package helpers;
 
 import java.io.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +51,7 @@ public abstract class AoCSolver {
      * @param input the file input.
      */
     private void solve(List<String> input) {
+        System.out.println("Timer Started @ "+LocalTime.now());
         solvePartOne(input);
         solvePartTwo(input);
     }
